@@ -8,4 +8,4 @@ A Xposed module to bypass snapchat screenshot detection.
 
 If the Snapchat version is compatible and the Hook loads you can see a Toast message when opening Snapchat.
 ## Credits
-The version compatibility check was taken from [TheGreyRaven](https://github.com/TheGreyRaven) an his [SnapTrap](https://github.com/TheGreyRaven/SnapTrap) project.
+The version compatibility check was taken from [TheGreyRaven](https://github.com/TheGreyRaven) and his [SnapTrap](https://github.com/TheGreyRaven/SnapTrap) project.
