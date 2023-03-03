@@ -23,11 +23,16 @@ public class versionData {
             put("parameterTypesAndCallback", "z29");
         }});
 
-        
         put("12.18.0.33", new HashMap<String, String>() {{
             put("className", "OMe");
             put("methodName", "d");
             put("parameterTypesAndCallback", "Vc8");
+        }});
+
+        put("12.23.0.38", new HashMap<String, String>() {{
+            put("className", "QQe");
+            put("methodName", "d");
+            put("parameterTypesAndCallback", "gf8");
         }});
     }};
 
