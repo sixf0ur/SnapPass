@@ -6,6 +6,7 @@ A Xposed module to bypass snapchat screenshot detection.
 - 11.62.1.35
 - 12.18.0.33
 - 12.23.0.38
+- 12.25.0.35
 
 If the Snapchat version is compatible and the Hook loads you can see a Toast message when opening Snapchat.
 ## Credits
