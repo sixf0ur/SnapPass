@@ -34,6 +34,12 @@ public class versionData {
             put("methodName", "d");
             put("parameterTypesAndCallback", "gf8");
         }});
+
+        put("12.25.0.35", new HashMap<String, String>() {{
+            put("className", "RWe");
+            put("methodName", "d");
+            put("parameterTypesAndCallback", "Ki8");
+        }});
     }};
 
     public static boolean verifyVersion(Context snapContext) {
