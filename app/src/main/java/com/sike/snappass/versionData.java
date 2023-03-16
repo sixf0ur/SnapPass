@@ -1,64 +1,52 @@
 package com.sike.snappass;
+
 import android.content.Context;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.util.Base64;
 import android.widget.Toast;
-import java.util.HashMap;
 
-public class versionData {
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import de.robv.android.xposed.callbacks.XC_LoadPackage;
+import io.github.neonorbit.dexplore.DexFactory;
+import io.github.neonorbit.dexplore.Dexplore;
+import io.github.neonorbit.dexplore.filter.ClassFilter;
+import io.github.neonorbit.dexplore.filter.DexFilter;
+import io.github.neonorbit.dexplore.filter.MethodFilter;
+import io.github.neonorbit.dexplore.filter.ReferenceTypes;
+import io.github.neonorbit.dexplore.result.MethodData;
 
-    public static String snapchatVersion;
-    public static Boolean canHook = false;
+public class versionData
+{
+    static String aCLASS = "U2NyZWVuc2hvdERldGVjdG9y";
+    static String aMETHOD = "V2hhdHNBcHA=";
+    public static String decode(String encodedString)
+    {
+        byte[] decodedBytes = Base64.decode(encodedString, Base64.DEFAULT);
+        String decodedString = new String(decodedBytes);
+        return decodedString;
+    }
+    //taken from the example
+    public static Method getMethod(XC_LoadPackage.LoadPackageParam lpparam)
+    {
+        ClassFilter classFilter = new ClassFilter.Builder()
+                .setReferenceTypes(ReferenceTypes.builder().addString().build())
+                .setReferenceFilter(pool ->
+                        pool.contains(decode(aCLASS))
+                ).build();
 
-    static public HashMap<String, HashMap> versions = new HashMap<String, HashMap>() {{
-        //add new entries for other snapchat versions
-        put("11.61.0.52", new HashMap<String, String>() {{
-            put("className", "c19");
-            put("methodName", "b");
-            put("parameterTypesAndCallback", "b19");
-        }});
-
-        put("11.62.1.35", new HashMap<String, String>() {{
-            put("className", "A29");
-            put("methodName", "b");
-            put("parameterTypesAndCallback", "z29");
-        }});
-
-        put("12.18.0.33", new HashMap<String, String>() {{
-            put("className", "OMe");
-            put("methodName", "d");
-            put("parameterTypesAndCallback", "Vc8");
-        }});
-
-        put("12.23.0.38", new HashMap<String, String>() {{
-            put("className", "QQe");
-            put("methodName", "d");
-            put("parameterTypesAndCallback", "gf8");
-        }});
-
-        put("12.25.0.35", new HashMap<String, String>() {{
-            put("className", "RWe");
-            put("methodName", "d");
-            put("parameterTypesAndCallback", "Ki8");
-        }});
-    }};
-
-    public static boolean verifyVersion(Context snapContext) {
-        try {
-            PackageInfo packageInfo = snapContext.getPackageManager().getPackageInfo(snapContext.getPackageName(), 0);
-            snapchatVersion = packageInfo.versionName;
-
-            if (versionData.versions.get(snapchatVersion) != null) {
-                canHook = true;
-                Toast.makeText(snapContext, "Hook loaded!", Toast.LENGTH_SHORT).show();
-                return true;
-            } else {
-                Toast.makeText(snapContext, "Incompatible Snapchat version!", Toast.LENGTH_SHORT).show();
-                return false;
-            }
-        } catch (Exception e) {
-            Toast.makeText(snapContext, "ERROR Incompatible version, aborting hooks.", Toast.LENGTH_SHORT).show();
-            return false;
-        }
+        MethodFilter methodFilter = new MethodFilter.Builder()
+                .setReferenceTypes(ReferenceTypes.builder().addString().build())
+                .setReferenceFilter(pool ->
+                        pool.contains(decode(aMETHOD))
+                ).setParamSize(1)
+                .setModifiers(Modifier.PUBLIC)
+                .build();
+        Dexplore dexplore = DexFactory.load(lpparam.appInfo.sourceDir);
+        MethodData result = dexplore.findMethod(DexFilter.MATCH_ALL, classFilter, methodFilter);
+        Method method = result.loadMethod(lpparam.classLoader);
+        return method;
     }
 
 }

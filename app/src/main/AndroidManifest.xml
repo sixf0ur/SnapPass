@@ -10,7 +10,7 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="A simple solution to bypass the Snapchat screenshot detection. (See supported versions)" />
+            android:value="A simple solution to bypass the Snapchat screenshot detection with Dexplore." />
         <meta-data
             android:name="xposedminversion"
             android:value="82" />
