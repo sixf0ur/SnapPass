@@ -1,10 +1,6 @@
 package com.sike.snappass;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.util.Base64;
-import android.widget.Toast;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
