@@ -2,12 +2,10 @@
 A Xposed module to bypass snapchat screenshot detection.
 
 ## Supported Versions:
-- 11.61.0.52
-- 11.62.1.35
-- 12.18.0.33
-- 12.23.0.38
-- 12.25.0.35
+SnapPass uses Dexplore to search for the method in the local apk. This becomes very handy when Snapchat updates are pushed and method names change. In the future, I won't have to update the repository with every new Snapchat release.
+Tested and working on the following
+- <= 12.25.0.35
 
 If the Snapchat version is compatible and the Hook loads you can see a Toast message when opening Snapchat.
 ## Credits
-The version compatibility check was taken from [TheGreyRaven](https://github.com/TheGreyRaven) and his [SnapTrap](https://github.com/TheGreyRaven/SnapTrap) project.
+Tnaks to [NeonOrbits Dexplore](https://github.com/NeonOrbit/Dexplore)
