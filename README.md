@@ -8,4 +8,4 @@ Tested and working on the following
 
 If the Snapchat version is compatible and the Hook loads you can see a Toast message when opening Snapchat.
 ## Credits
-Tnaks to [NeonOrbits Dexplore](https://github.com/NeonOrbit/Dexplore)
+Thanks to [NeonOrbits Dexplore](https://github.com/NeonOrbit/Dexplore)
